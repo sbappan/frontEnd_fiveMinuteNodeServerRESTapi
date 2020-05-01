@@ -25,14 +25,14 @@ class Content extends Component {
            const movies = await res.json();
            this.setState({movies})
         } catch (error) {
-            console.log('error: ', error);
+            // console.log('error: ', error);
         }
     }
 
     handleAddSubmit(id) {
-        console.log('called', id);
+        // console.log('called', id);
         const data = {id: this.state.id, name: this.state.name, genre: this.state.genre};
-        console.log('data: ', data);
+        // console.log('data: ', data);
         fetch(`https://fiveminuteserverrestapi.herokuapp.com/items`, {
             method: 'POST', // or 'PUT'
             headers: {
@@ -42,7 +42,7 @@ class Content extends Component {
         })
         .then(response => response.json())
         .then(data => {
-            console.log('Success:', data);
+            // console.log('Success:', data);
             this.setState(prevState => ({
                 addMode: !prevState.addMode,
                 movies: data
@@ -54,7 +54,7 @@ class Content extends Component {
     }
 
     handleAddChange(e) {
-        console.log(e.target);
+        // console.log(e.target);
         const { name, value } = e.target;
         this.setState(prevState => {
             if (prevState[name] !== value) {

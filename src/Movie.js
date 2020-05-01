@@ -31,10 +31,10 @@ class Movie extends Component {
         })
         .then(response => response.json())
         .then(data => {
-            console.log('Success:', data);
+            // console.log('Success:', data);
         })
         .catch((error) => {
-            console.error('Error:', error);
+            // console.error('Error:', error);
         });
 
         this.setState(prevState => ({
@@ -43,7 +43,7 @@ class Movie extends Component {
     }
 
     handleChange(e) {
-        console.log(e.target);
+        // console.log(e.target);
         const { name, value } = e.target;
         this.setState(prevState => {
             if (prevState[name] !== value) {
