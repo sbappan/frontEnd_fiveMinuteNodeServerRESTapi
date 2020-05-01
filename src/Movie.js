@@ -21,7 +21,7 @@ class Movie extends Component {
     }
 
     handleSubmit () {
-        this.props.handleSubmit({name: this.state.name, genre: this.state.genre, id: this.props.id});
+        this.props.handleSubmit({name: this.state.name, genre: this.state.genre, id: this.props.id, method: 'PUT'});
         this.handleClick();
     }
 
@@ -50,7 +50,7 @@ class Movie extends Component {
                 <div>
                     {editing && <button className='submitBtn' onClick={this.handleSubmit}>Submit</button>}
                     <button onClick={this.handleClick}>{editing ? 'Cancel' : 'Edit'}</button>
-                    <button onClick={() => this.props.handleDelete(this.props.id)} className='deleteBtn'>Delete</button>
+                    <button onClick={() => this.props.handleSubmit({id: this.props.id, method: 'DELETE'})} className='deleteBtn'>Delete</button>
                 </div>
             </div>
         )

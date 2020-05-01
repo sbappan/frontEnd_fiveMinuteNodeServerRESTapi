@@ -10,7 +10,7 @@ function AddMovie (props) {
             <div className="addMovie">
                 {addMode || <button onClick={handleClick}>Add movie</button>}
                 {addMode && <div className='addForm'>{idInput}{nameInput}{genreInput}</div>}
-                {addMode && <button className='submitBtn' id={id} onClick={handleSubmit}>Submit</button>}
+                {addMode && <button className='submitBtn' id={id} onClick={() => handleSubmit({method: 'POST'})}>Submit</button>}
             </div>
         )
 }
