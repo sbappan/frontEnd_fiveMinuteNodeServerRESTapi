@@ -13,6 +13,8 @@ body {
   flex: 1 0 auto;
   display: flex;
   flex-direction: column;
+  min-height: 90vh;
+  height: 90vh;
 }
 
 .footer {
@@ -48,4 +50,24 @@ body {
 
 .movie button.submitBtn:hover {
   background-color: rgb(24, 158, 12);
+}
+
+.addMovie button {
+  height: 2.5rem;
+  width: 6rem;
+  background-color: #ff7b25;
+  border: none;
+  color: #010101;
+  margin-top: 1rem;
+}
+
+.addMovie button:hover {
+  cursor: pointer;
+  background-color: #6b5b95;
+  color: whitesmoke;
+}
+
+.addForm {
+  display: flex;
+  flex-direction: column;
 }

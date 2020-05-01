@@ -11,6 +11,7 @@ class Movie extends Component {
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleClick = this.handleClick.bind(this);
     }
 
     handleClick() {
@@ -21,7 +22,6 @@ class Movie extends Component {
 
     handleSubmit() {
         const data = {name: this.state.name, genre: this.state.genre};
-        console.log('data: ', data);
         fetch(`https://fiveminuteserverrestapi.herokuapp.com/items/${this.props.id}`, {
             method: 'PUT', // or 'PUT'
             headers: {
@@ -59,15 +59,17 @@ class Movie extends Component {
 
     render() {
         const { name, genre, editing } = this.state;
-        const editInput =  <><input type="text" name="name" value={name} onChange={this.handleChange} /><input type="text" name="genre" value={genre} onChange={this.handleChange}/></>;
+        
+        const nameInput =  <input type="text" name="name" value={name} onChange={this.handleChange} />;
+        const genreInput =  <input type="text" name="genre" value={genre} onChange={this.handleChange}/>;
         const displayData = <p>Name: {name}, Genre: {genre}</p>;
 
         return (
             <div className="movie">
-                {editing ? editInput : displayData}
+                {editing ? <>{nameInput} {genreInput}</> : displayData}
                 <div>
                     {editing && <button className='submitBtn' onClick={this.handleSubmit}>Submit</button>}
-                    <button onClick={() => this.handleClick()}>{editing ? 'Cancel' : 'Edit'}</button>
+                    <button onClick={this.handleClick}>{editing ? 'Cancel' : 'Edit'}</button>
                 </div>
             </div>
         )
