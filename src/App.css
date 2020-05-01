@@ -71,3 +71,11 @@ body {
   display: flex;
   flex-direction: column;
 }
+
+.movie .deleteBtn {
+  background-color: #e06377;
+}
+
+.movie .deleteBtn:hover {
+  background-color: #c83349;
+}

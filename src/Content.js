@@ -12,11 +12,12 @@ class Content extends Component {
             name: '',
             genre: '',
             addMode: false,
-            editing: false,
         }
         this.handleAddChange = this.handleAddChange.bind(this);
         this.handleAddSubmit = this.handleAddSubmit.bind(this);
         this.handleAddClick = this.handleAddClick.bind(this);
+        this.handleMovieSubmit = this.handleMovieSubmit.bind(this);
+        this.handleMovieDelete = this.handleMovieDelete.bind(this);
     }
 
     async componentDidMount() {
@@ -29,10 +30,8 @@ class Content extends Component {
         }
     }
 
-    handleAddSubmit(id) {
-        // console.log('called', id);
+    handleAddSubmit() {
         const data = {id: this.state.id, name: this.state.name, genre: this.state.genre};
-        // console.log('data: ', data);
         fetch(`https://fiveminuteserverrestapi.herokuapp.com/items`, {
             method: 'POST', // or 'PUT'
             headers: {
@@ -42,14 +41,13 @@ class Content extends Component {
         })
         .then(response => response.json())
         .then(data => {
-            // console.log('Success:', data);
             this.setState(prevState => ({
                 addMode: !prevState.addMode,
                 movies: data
             }))
         })
         .catch((error) => {
-            console.error('Error:', error);
+            // console.error('Error:', error);
         });
     }
 
@@ -69,11 +67,46 @@ class Content extends Component {
         }))
     }
 
+    handleMovieSubmit(data) {
+        fetch(`https://fiveminuteserverrestapi.herokuapp.com/items/${data.id}`, {
+            method: 'PUT', // or 'PUT'
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        })
+        .then(response => response.json())
+        .then(data => {
+            // console.log('Success:', data);
+            this.setState({movies: data})
+        })
+        .catch((error) => {
+            // console.error('Error:', error);
+        });
+    }
+
+    handleMovieDelete(id) {
+        fetch(`https://fiveminuteserverrestapi.herokuapp.com/items/${id}`, {
+            method: 'DELETE', // or 'PUT'
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+        .then(response => response.json())
+        .then(data => {
+            // console.log('Success:', data);
+            this.setState({movies: data})
+        })
+        .catch((error) => {
+            // console.error('Error:', error);
+        });
+    }
+
    render() {
        const { movies, id, name, genre, addMode } = this.state;
     return (
         <div className="content">
-            {movies.map(movie => <Movie key={movie.id} id={movie.id} name={movie.name} genre={movie.genre} />)}
+            {movies.map(movie => <Movie key={movie.id} id={movie.id} name={movie.name} genre={movie.genre} handleSubmit={this.handleMovieSubmit} handleDelete={this.handleMovieDelete} />)}
 
             <AddMovie movies={movies} id={id} name={name} genre={genre} addMode={addMode} handleClick={this.handleAddClick} handleChange={this.handleAddChange} handleSubmit={this.handleAddSubmit} />
         </div>

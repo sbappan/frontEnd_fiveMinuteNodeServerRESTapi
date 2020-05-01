@@ -1,7 +1,6 @@
-Hosted at https://5minserver.netlify.app/
+Deployed at https://5minserver.netlify.app/
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/f736694f-ae7c-4b00-b777-c30b53d4ebe0/deploy-status)](https://app.netlify.com/sites/5minserver/deploys)
-
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
