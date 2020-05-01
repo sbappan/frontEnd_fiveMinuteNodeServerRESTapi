@@ -32,6 +32,11 @@ class Content extends Component {
 
     handleAddSubmit() {
         const data = {id: this.state.id, name: this.state.name, genre: this.state.genre};
+        
+        //https://gist.github.com/6174/6062387
+        data.id = data.id ? data.id : Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+        // Id is necessary for proper functioning of the app
+
         fetch(`https://fiveminuteserverrestapi.herokuapp.com/items`, {
             method: 'POST', // or 'PUT'
             headers: {
